@@ -1,0 +1,41 @@
+@import url("https://fonts.google.com/share?selection.family=Pacifico");
+
+.sidebar {
+  width: 200px;
+  height: 100vh;
+  padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Pacifico", cursive;
+}
+.ListTile {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #161616;
+  margin-top: 10;
+}
+
+.ListTile:hover {
+  background-color: gray;
+}
+
+.ListTile-icon {
+  margin-right: 8px;
+  display: flex;
+  font-size: 25;
+}
+
+.ListTile-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+.flexContainer {
+  margin-top: 330px;
+}
