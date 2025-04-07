@@ -1,0 +1,165 @@
+/* styles/Home.module.css */
+@import url("https://fonts.googleapis.com/css?family=Monoton");
+@import url("https://fonts.googleapis.com/css?family=Great+Vibes");
+
+.homeContainer {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0px;
+  margin: auto;
+  text-align: center;
+}
+
+.wrapper h1 {
+  margin: 0;
+  font-weight: normal;
+  font-size: 100px;
+}
+
+.font1 {
+  font-family: "Monoton", cursive;
+}
+
+.wrapper p {
+  font-size: 20px;
+  margin: 0;
+  font-weight: normal;
+  line-height: 50px;
+}
+
+/* 전역 button 스타일은 :global 로 처리 */
+:global(button.btn-blue) {
+  float: left;
+  border: none;
+  width: 200px;
+  height: 70px;
+  border-radius: 4px;
+  margin-top: 10px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.homeContainer .wrapper h1 {
+  animation: neon2-4 3s infinite;
+}
+
+/* Home 컨테이너 내의 h2 */
+.homeContainer .wrapper h2 {
+  text-align: right;
+  animation: neonWhite 3s infinite;
+  padding-right: 58px;
+  color: #0b616b;
+  text-shadow: 0 0 10px #0b616b, 1px 1px #eee, 0 0 280px #ddd;
+  font-size: 20px;
+  margin: 0;
+  font-weight: normal;
+  line-height: 50px;
+}
+
+@keyframes neonWhite {
+  0%,
+  80%,
+  95%,
+  97%,
+  98%,
+  100% {
+    color: blak;
+    text-shadow: 0 0 10px #fff, 1px 1px #eee, 0 0 280px #039be5;
+  }
+  81%,
+  94%,
+  96%,
+  99% {
+    color: #0b616b;
+    text-shadow: 0 0 10px #f8f8f8, 1px 1px #ddd, -2px 0 4px #ccc;
+  }
+}
+
+.homeContainer .wrapper p {
+  animation: neonWhite 3s infinite;
+  padding-right: 40px;
+  color: #0b616b;
+  text-shadow: 0 0 10px #0b616b, 1px 1px #eee, 0 0 280px #ddd;
+  font-size: 20px;
+  margin: 0;
+  font-weight: normal;
+  line-height: 50px;
+  text-align: right;
+}
+
+@keyframes neon2-4 {
+  0%,
+  80%,
+  95%,
+  97%,
+  98%,
+  100% {
+    color: #03a9f4;
+    text-shadow: 0 0 10px #03a9f4, 1px 1px #81d4fa, 0 0 280px #0277bd;
+  }
+  81%,
+  94%,
+  96%,
+  99% {
+    color: #222;
+    text-shadow: 0 0 10px #000, 1px 1px rgb(99, 74, 82), -2px 0 4px #29121a;
+  }
+}
+
+@keyframes bgNeon-4 {
+  0%,
+  80%,
+  95%,
+  97%,
+  98%,
+  100% {
+    background-color: #0277bd;
+  }
+  81%,
+  94%,
+  96%,
+  99% {
+    background-color: #111;
+  }
+}
+
+.imageContainer {
+  display: grid;
+  grid-template-areas:
+    "image image"
+    "prev next";
+  justify-items: center;
+  align-items: center;
+}
+
+.imageContainer img {
+  grid-area: image;
+  width: 600px;
+  height: 400px;
+  object-fit: cover;
+}
+
+:global(.imageContainer button:nth-of-type(1)) {
+  grid-area: prev;
+}
+
+:global(.imageContainer button:nth-of-type(2)) {
+  grid-area: next;
+}
