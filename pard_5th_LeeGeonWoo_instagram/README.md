@@ -1,27 +1,44 @@
-#Instagram 
-## 파일구조
-<img width="221" alt="스크린샷 2025-04-06 오후 4 01 32" src="https://github.com/user-attachments/assets/49f0c5b9-9f2f-4fe8-83fd-162385c93932" />
-page 폴더 안에 conponent파일로 사이드 바 ,아이콘,레이아웃 tsx파일들을 두고
-MyPage 파일에 index.tsx파일을 두어 다음페이지로 사용
-기존 index.tsx는 home main 화면임
+# 인스타그램 상세페이지
+
+## modal.tsx
+<img width="651" alt="스크린샷 2025-04-09 오후 11 58 37" src="https://github.com/user-attachments/assets/7da4fa85-6e2f-47e6-803f-bd7e4314fbd9" />
+
+modal.tsx를 사용함. 페이지가 넘어가지 않고 같은 화면에서 보일 수 있도록 stopPropagation() 부모와 자식을 나뉘어서 자식만 호출될 수 있도록 하는 함수임
+
+<img width="590" alt="스크린샷 2025-04-10 오전 12 00 24" src="https://github.com/user-attachments/assets/84e09fa5-6281-4564-bb8d-2799d7ca256c" />
+
+## 사진 
+<img width="1467" alt="스크린샷 2025-04-09 오후 11 44 12" src="https://github.com/user-attachments/assets/ba535c56-c2c6-4acc-ab21-727117b0ea76" />
+
+<img width="1461" alt="스크린샷 2025-04-09 오후 11 44 33" src="https://github.com/user-attachments/assets/574b83b4-b520-4080-a344-752854458bdb" />
+
+## 좋아요 및 댓글
+<img width="459" alt="스크린샷 2025-04-09 오후 11 45 10" src="https://github.com/user-attachments/assets/fc8fb388-a058-4c5d-857a-5292a50deeff" />
+<img width="514" alt="스크린샷 2025-04-09 오후 11 45 35" src="https://github.com/user-attachments/assets/e8fbfa82-4684-4ad6-b54a-1f645e108573" />
+
+처음 사진처럼 타입 지정해줘서 좋아요를 업데이트할거랑 배열에 댓글을 담을 string 지정, boolean을 사용해서 좋아요를 누르고 취소할수있게 만듬
+두번째 사진처럼 좋아요를 누르면 +1로 표시되고 setIsLiked가 true로 되서   
+const likeColor: string = isLiked ? "#F0355B" : "#fff"; 코드로 아이콘이 빨간색으로 변하도록 설정함.
+취소할때는 else 코드처럼 0보다 큰지 확인후 1을 마이너스 해준 후 컬러가 하얀색으로 되돌아감
+## porfile.module.css를 이용해서 그리드의 UI 형성
+
+<img width="350" alt="스크린샷 2025-04-09 오후 11 50 32" src="https://github.com/user-attachments/assets/abe4b47d-ce46-426f-90d3-82893b27d5aa" />
+
+그리드의 UI를 형성 후 
+<img width="323" alt="스크린샷 2025-04-09 오후 11 51 50" src="https://github.com/user-attachments/assets/22221321-f2df-416b-9d10-762cc52b226f" />
+
+위 사진처럼 배열로 그리드 목록을 만들고 images.map((image, index) => 를 이용해서 그리드 이미지 표시함
+## modal.css를 만들어서 모델틀 만듬
+
+<img width="361" alt="스크린샷 2025-04-09 오후 11 53 06" src="https://github.com/user-attachments/assets/a08feea1-c37f-41c9-b0f5-550128f9c055" />
+
+이걸 사용하면서 안건데 module.css 와 그냥 css의 차이점이 있음 
+module.css를 사용하면   <div className={profileStyles.profileFrame}> 이런식으로 tailwind에서 표현을 해줘야되는데 modal.css 처럼 module를 붙이지 않으면         <div className="profileFrame"> 처럼 className으로 바로 적을 수 있음
+
+## 아직 모르겠는점
+
+ onChange={(e) => setReview(e.target.value)} 이 부분에서 아직도 e가 이해되지 않음 좀더 공부를 해야지..
+
+ 
 
 
-<img width="842" alt="스크린샷 2025-04-06 오후 3 56 33" src="https://github.com/user-attachments/assets/b1dc7c2b-b79c-4b28-99a7-0d5ff14d510a" />
-1.홈화면 컨테이너 두개를 Home.module.css에 두고 나머지는 tailwind 이용해서 구성했습니다. 
-##Link를 이용한 페이지 넘어가기
-<img width="542" alt="스크린샷 2025-04-06 오후 3 59 14" src="https://github.com/user-attachments/assets/7b8a1c04-e254-465c-a667-815fe79da656" />
-import Link from "next/link"; Link를 사용하기 위해선 이 코드를 import 해줘야함
-href="/MyPage" 를 이용하여 페이지 경로 설정
-
-## 마이페이지 UI
-<img width="1512" alt="스크린샷 2025-04-06 오후 4 05 56" src="https://github.com/user-attachments/assets/44f5dbc6-52ae-4db5-87f0-f54327aed3ef" />
-1.더보기를 맨밑에 보내는데 그걸 동적으로 하는법을 모르겠다.. 알아봐야겠다..
-2.sidebar를 따로 두고 거기에 layout.tsx와 sidebar.tsx로 화면을 구성했다.
-<img width="574" alt="스크린샷 2025-04-06 오후 4 07 38" src="https://github.com/user-attachments/assets/046a80af-36bc-46e2-8831-d6243ae60c8f" />
-피그마에서 사진을 떠오는줄 모르고 아이콘 찾아서 했다.. 그래도 아이콘 쓰는법 알아서 기분은 좋다 ㅎㅎ
-
-<img width="888" alt="스크린샷 2025-04-06 오후 4 09 09" src="https://github.com/user-attachments/assets/eb66b2ca-7500-4f51-b5ba-c68fbaaeb59e" />
-마이페이지 화면인데 row랑 col를 적절히 쓰기가 힘들었다
-
-<img width="493" alt="스크린샷 2025-04-06 오후 4 09 48" src="https://github.com/user-attachments/assets/739bcc54-9683-40a9-9d30-9128eff3294a" />
-profile.css에 프로필 화면이랑 그리드를 모듈화했다 이렇게 하면 수정하기 좋고 편할거 같아서 했다 

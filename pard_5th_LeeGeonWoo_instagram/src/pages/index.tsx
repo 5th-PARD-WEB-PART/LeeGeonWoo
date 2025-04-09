@@ -17,10 +17,7 @@ const Home: React.FC = () => {
           </p>
         </div>
         <div style={{ marginTop: "30px" }}></div>
-        <input
-          className={`${styles.textFiled}`}
-          placeholder="휴대폰 번호 또는 이메일 주소"
-        />
+
         <input className={`${styles.textFiled}`} placeholder="성명" />
         <input className={`${styles.textFiled}`} placeholder="사용자 이름" />
         <input

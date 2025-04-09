@@ -7,7 +7,7 @@ import { IoHeartOutline } from "react-icons/io5";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { IoPersonOutline } from "react-icons/io5";
 import { FaBars } from "react-icons/fa";
-
+import { CiHeart } from "react-icons/ci";
 export {
   GoHome,
   IoMdSearch,
@@ -17,4 +17,5 @@ export {
   IoAddCircleOutline,
   IoPersonOutline,
   FaBars,
+  CiHeart,
 };
