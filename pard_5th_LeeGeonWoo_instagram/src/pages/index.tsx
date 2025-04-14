@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
+import { userName } from "@/store/userImfo";
+import router from "next/router";
 
 const Home: React.FC = () => {
+  const { name, setName } = userName();
+  const [newName, setNewName] = useState(name);
+
+  const handleLogin = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    setName(newName);
+    alert("환영합니다");
+    router.push("/MyPage");
+  };
+
   return (
     <div className="flex flex-col justify-center items-center h-screen gap-4">
       <div className={styles.mainContainer}>
@@ -19,7 +31,12 @@ const Home: React.FC = () => {
         <div style={{ marginTop: "30px" }}></div>
 
         <input className={`${styles.textFiled}`} placeholder="성명" />
-        <input className={`${styles.textFiled}`} placeholder="사용자 이름" />
+        <input
+          className={`${styles.textFiled}`}
+          placeholder="사용자 이름"
+          value={newName}
+          onChange={(e) => setNewName(e.target.value)}
+        />
         <input
           className={`${styles.textFiled}`}
           placeholder="비밀번호"
@@ -37,6 +54,7 @@ const Home: React.FC = () => {
           <p>계정이 있으신가요?</p>
           <Link
             href="/MyPage"
+            onClick={handleLogin}
             className="text-sm font-bold text-center text-blue-500 ml-2"
           >
             로그인

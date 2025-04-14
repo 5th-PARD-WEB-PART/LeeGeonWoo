@@ -3,11 +3,8 @@ import Layout from "../component/layout";
 import "../../styles/Modal.css";
 import profileStyles from "../../styles/Profile.module.css";
 import Modal from "./Modal";
-import { CiHeart, FaBars } from "../component/icons";
-
-interface ImageData {
-  src: string;
-}
+import { CiHeart } from "../component/icons";
+import useModalStore, { userName, ImageData } from "@/store/userImfo";
 
 const images: ImageData[] = [
   { src: "/sexy_wed.jpeg" },
@@ -22,40 +19,31 @@ const images: ImageData[] = [
 ];
 
 const MyPage: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [currentImage, setCurrentImage] = useState<ImageData | null>(null);
+  const { name, setName } = userName();
 
-  const [review, setReview] = useState<string>("");
-  const [reviews, setReviews] = useState<string[]>([]);
+  const {
+    isModalOpen,
+    currentImage,
+    openModal,
+    closeModal,
+    reviews,
+    review,
+    setReview,
+    addReview,
+    likeCount,
+    isLiked,
+    toggleLike,
+    isEditModalOpen,
+    openEditModal,
+    closeEditModal,
+  } = useModalStore();
 
-  const [likeCount, setLikeCount] = useState<number>(0);
-  const [isLiked, setIsLiked] = useState<boolean>(false);
+  const [newName, setNewName] = useState(name);
 
-  const openModal = (image: ImageData) => {
-    setCurrentImage(image);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setCurrentImage(null);
-  };
-
-  const handleLike = () => {
-    if (!isLiked) {
-      setLikeCount(likeCount + 1);
-      setIsLiked(true);
-    } else {
-      setLikeCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0));
-      setIsLiked(false);
-    }
-  };
-
-  const handleReviewPost = (): void => {
-    if (review.trim() !== "") {
-      setReviews((prevReviews) => [...prevReviews, review.trim()]);
-      setReview("");
-    }
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setName(newName);
+    closeEditModal();
   };
 
   const likeColor: string = isLiked ? "#F0355B" : "#fff";
@@ -69,8 +57,11 @@ const MyPage: React.FC = () => {
           </div>
           <div className="flex flex-col ml-10">
             <div className="flex flex-row items-center space-x-4">
-              <p className="text-lg font-bold">PARD</p>
-              <button className={`${profileStyles.profileButton} font-bold`}>
+              <p className="text-lg font-bold">{name}</p>
+              <button
+                onClick={openEditModal}
+                className={`${profileStyles.profileButton} font-bold`}
+              >
                 프로필 편집
               </button>
             </div>
@@ -81,6 +72,7 @@ const MyPage: React.FC = () => {
             </div>
           </div>
         </div>
+
         <div className="mt-60">
           <div className={profileStyles.gridContainer}>
             {images.map((image, index) => (
@@ -123,14 +115,16 @@ const MyPage: React.FC = () => {
             <div className="flex flex-col p-4 w-1/2 h-full">
               <div>
                 <div className="flex flex-row items-center space-x-4">
-                  <div className="profileFrame">
+                  <div
+                    className={`${profileStyles.profileFrame} w-[29px] h-[29px]`}
+                  >
                     <img
                       src="/Avatar.png"
                       alt="Profile"
                       className="rounded-full"
                     />
                   </div>
-                  <p>PARD</p>
+                  <p>{name}</p>
                 </div>
                 <div className="mt-5">
                   {reviews.map((item, idx) => (
@@ -149,7 +143,7 @@ const MyPage: React.FC = () => {
                 <div className="w-full border-t border-[#222]"></div>
                 <div className="flex flex-row p-4 space-x-4">
                   <span>
-                    <button onClick={handleLike}>
+                    <button onClick={toggleLike}>
                       <CiHeart
                         className="w-8 h-8"
                         style={{ color: likeColor, fill: likeColor }}
@@ -190,12 +184,48 @@ const MyPage: React.FC = () => {
                   />
                   <button
                     className="absolute inset-y-0 right-0 px-4 text-[#5A6E80]"
-                    onClick={handleReviewPost}
+                    onClick={addReview}
                   >
                     게시
                   </button>
                 </div>
               </div>
+            </div>
+          </div>
+        </Modal>
+      )}
+
+      {isEditModalOpen && (
+        <Modal isOpen={isEditModalOpen} onClose={closeEditModal}>
+          <div className="p-20 pl-60">
+            <h2 className="text-xl font-bold mb-4">프로필 편집</h2>
+            <h3 className="mb-4">수정할 닉네임을 입력후 제출 해주세요.</h3>
+            <form
+              id="profileForm"
+              onSubmit={handleSubmit}
+              className="text-left"
+            >
+              <div className="flex flex-row items-center w-[674px] h-[96px] bg-[#1A1A1A] space-x-4 pl-4 rounded-[20px]">
+                <img
+                  src="/Avatar.png"
+                  alt="Avatar"
+                  className="w-[62px] h-[62px] rounded-full"
+                />
+                <input
+                  className="border border-gray-300 p-2 w-[267px] h-[37px]"
+                  value={newName}
+                  onChange={(e) => setNewName(e.target.value)}
+                />
+              </div>
+            </form>
+            <div className="flex items-center justify-center pt-20">
+              <button
+                type="submit"
+                form="profileForm"
+                className="bg-[#3C98FF] text-white rounded w-[275px] h-[48px]"
+              >
+                제출
+              </button>
             </div>
           </div>
         </Modal>
