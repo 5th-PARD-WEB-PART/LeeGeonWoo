@@ -1,17 +1,79 @@
-@import url("https://fonts.google.com/share?selection.family=Pacifico");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 
 .sidebar {
-  width: 200px;
+  width: 70px;
   height: 100vh;
-  padding: 1rem;
+  padding: 1rem 0;
+
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s;
+}
+
+.title,
+.ListTile-title {
+  display: none;
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .sidebar {
+    width: 200px;
+    padding: 1rem;
+  }
+  .title,
+  .ListTile-title {
+    display: block;
+  }
+  .ListTile {
+    justify-content: flex-start;
+  }
+  .ListTile-icon {
+    margin-right: 8px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .sidebar {
+    width: 70px;
+    padding: 1rem 0;
+  }
+  .title,
+  .ListTile-title {
+    display: none;
+  }
+  .ListTile {
+    justify-content: center;
+  }
+  .ListTile-icon {
+    margin: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    width: 200px;
+    padding: 1rem;
+  }
+  .title,
+  .ListTile-title {
+    display: block;
+  }
+  .ListTile {
+    justify-content: flex-start;
+  }
+  .ListTile-icon {
+    margin-right: 8px;
+  }
 }
 
 .title {
   font-size: 25px;
   font-weight: bold;
   font-family: "Pacifico", cursive;
+  margin-bottom: 2rem;
 }
+
 .ListTile {
   display: flex;
   align-items: center;
@@ -19,7 +81,8 @@
   border-radius: 8px;
   cursor: pointer;
   background-color: #161616;
-  margin-top: 10;
+  color: #fff;
+  margin-top: 10px;
 }
 
 .ListTile:hover {
@@ -27,15 +90,9 @@
 }
 
 .ListTile-icon {
-  margin-right: 8px;
-  display: flex;
-  font-size: 25;
+  font-size: 25px;
 }
 
-.ListTile-title {
-  font-size: 16px;
-  font-weight: 500;
-}
 .flexContainer {
-  margin-top: 330px;
+  flex-grow: 1;
 }
